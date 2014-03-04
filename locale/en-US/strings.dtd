@@ -2,4 +2,8 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
-<!ENTITY MyAddonUI.label "Hello World!">
+<!ENTITY MockL10nUI.label "Localize DOM">
+<!ENTITY MockL10nUI.localize-button.label "Localize">
+<!ENTITY MockL10nUI.settings.title "Settings">
+<!ENTITY MockL10nUI.gaia.label "Gaia">
+<!ENTITY MockL10nUI.gaia-l10n.label "gaia-l10n">

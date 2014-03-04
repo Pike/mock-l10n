@@ -6,19 +6,19 @@
   <Description about="urn:mozilla:install-manifest">
 
     <!-- The id of the extension. -->
-    <em:id>my-addon@mozilla.com</em:id>
+    <em:id>fxos-l10n-mock@mozilla.com</em:id>
 
     <!-- A version string identifying the version of the add-on. -->
     <em:version>0.1</em:version>
 
     <!-- The name of the add-on; intended for display in the UI. -->
-    <em:name>MyAddon</em:name>
+    <em:name>MockL10n</em:name>
 
     <!-- A short description to display in the user interface. -->
-    <em:description>Description about MyAddon</em:description>
+    <em:description>Description about MockL10n</em:description>
 
     <!-- The name of the developer to display in the user interface. -->
-    <em:creator>My Name</em:creator>
+    <em:creator>Axel Hecht</em:creator>
 
     <!-- A link to the add-on home page to display in the user interface. -->
     <em:homepageURL>http://mozilla.org</em:homepageURL>

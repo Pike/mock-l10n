@@ -5,14 +5,18 @@
 
 const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
 
-this.EXPORTED_SYMBOLS = ["MyAddonPanel"];
+this.EXPORTED_SYMBOLS = ["MockL10nPanel"];
 
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 
 XPCOMUtils.defineLazyModuleGetter(this, "EventEmitter",
-  "resource:///modules/devtools/shared/event-emitter.js");
+  "resource://gre/modules/devtools/event-emitter.js");
 XPCOMUtils.defineLazyModuleGetter(this, "promise",
   "resource://gre/modules/commonjs/sdk/core/promise.js", "Promise");
+const {devtools} = Cu.import("resource://gre/modules/devtools/Loader.jsm", {});
+const {require} = devtools;
+XPCOMUtils.defineLazyGetter(this, "StyleSheetsFront",
+  () => require("resource://gre/modules/devtools/server/actors/stylesheets.js").StyleSheetsFront);
 
 /**
  * This is the add-on's panel, wrapping the tool's contents.
@@ -22,14 +26,14 @@ XPCOMUtils.defineLazyModuleGetter(this, "promise",
  * @param Toolbox toolbox
  *        The developer tools toolbox, containing all tools.
  */
-function MyAddonPanel(iframeWindow, toolbox) {
+function MockL10nPanel(iframeWindow, toolbox) {
   this.panelWin = iframeWindow;
   this._toolbox = toolbox;
 
   EventEmitter.decorate(this);
 };
 
-MyAddonPanel.prototype = {
+MockL10nPanel.prototype = {
   get target() this._toolbox.target,
 
   /**
@@ -40,6 +44,8 @@ MyAddonPanel.prototype = {
    *         A promise that is resolved when the tool completes opening.
    */
   open: function() {
+    let debuggee = StyleSheetsFront(this.target.client, this.target.form);
+    this.panelWin._debuggee = debuggee;
     return this.panelWin.startup(this._toolbox, this.target).then(() => {
       this.isReady = true;
       this.emit("ready");

@@ -11,4 +11,7 @@
 
 .theme-light body > p {
   color: #ed2655;
+
+.mock-label {
+  width: 10em;
 }
